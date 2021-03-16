@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <style>
+        ul{
+        	list-style: none;
+        	margin:0;
+        	padding: 0;
+        }
+        img{
+        	vertical-align: middle;
+        	width: 200px;
+        	height: 200px;
+        	padding: 5px 0;
+        }
+        .box{
+        	width:200px;
+        	height: 1200px;
+        	overflow: hidden;
+        	border: 10px solid;
+        	margin:0 auto;
+        }
+        .box .img{
+        	/*display: flex;*/
+        	/*position: absolute;*/
+        	position: relative;
+        	top:0;
+        }
+        <yle>
+    </head>
+    <body>
+    <div id="box1" class="box">
+    	<ul class="img" style="top:0;">
+    		<li><img src="img/1.jpg" alt="1"><>
+    		<li><img src="img/2.jpg" alt="2"><>
+    		<li><img src="img/3.jpg" alt="3"><>
+    		<li><img src="img/4.jpg" alt="4"><>
+    		<li><img src="img/5.jpg" alt="5"><>
+    		<li><img src="img/6.jpg" alt="6"><>
+            <li><img src="img/1.jpg">
+    	</ul>
+    </div>
+    <script>
+    var box=document.getElementById('box1');
+    var imgs=box.getElementsByClassName('img')[0];
+    // var img=img.getElementsByName('img');    
+    var imgh=200;
+    var imgn=6;
+    var imgl=imgn*imgh;//所有图片高度总和
+    var t=null;
+    var step=1;//时间间隔
+     function move(){
+     	var top=parseInt(imgs.style.top);//获取top初始属性且转为数字值
+     	if(top==-imgl){//判断是否已经循环完一遍
+     		top=0;//内容回到初始位置
+     	}
+     	imgs.style.top=--top+'px';//设置新的top值，让内容向左移动1像素
+    	}
+     imgs.innerHTML+=imgs.innerHTML;//复制一份内容
+     box.onmouseover=function(){//鼠标滑过内容区域时的操作
+     	clearInterval(t);//停止内容移动
+     }
+     imgs.onmouseout=function(){//鼠标离开内容区域时
+     	t=setInterval(move,step);//设置定时器
+     }
+     imgs.onmouseout();//自动执行一次鼠标离开操作，触发鼠标离开事件
+    </script>	
+    </body>
+<ml>
